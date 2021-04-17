@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     submit() {
-          axios.post("http://localhost:3000/prev", {
+          axios.post("http://localhost:3000/Previews", {
               title: this.title
             })
             

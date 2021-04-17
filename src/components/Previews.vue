@@ -1,19 +1,28 @@
 <template>
 
-    <h1>{{ title }}</h1>
+      <li v-for="Previews in PreviewsList" :key="Previews.id">{{ Previews.title }}</li>
 
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
-  name: "Prev",
+  name: "Previews",
      props: {
     title: String,
     id: String
+  },
+  data() {
+    return {
+      PreviewsList: [],
+    };
   }
-
-  
+  ,
+  mounted() {
+    axios.get("http://localhost:3000/Previews").then((result) => {
+      this.PreviewsList = result.data;
+    });
+  }
 };
 </script>
 
