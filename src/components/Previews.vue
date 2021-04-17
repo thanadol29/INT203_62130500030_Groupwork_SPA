@@ -1,11 +1,10 @@
 <template>
   <div class="p-14">
-    <div  v-for="Previews in PreviewsList" :key="Previews.id">
+    <div v-for="Previews in PreviewsList" :key="Previews.id">
       {{ "Title :  " + Previews.title }}
-      {{ "Content : " +  Previews.context }}
-      <button
-        @click="remove"
-      > remove  </button>
+      {{ "Content : " + Previews.context }}
+      <button @click="remove">remove</button>
+      <button class="p-1" @click="edit">edit</button>
     </div>
   </div>
 </template>
@@ -28,13 +27,19 @@ export default {
     axios.get("http://localhost:3000/Previews").then((result) => {
       this.PreviewsList = result.data;
     });
-  }
-  ,
+  },
   methods: {
     remove(id) {
-       axios.delete("http://localhost:3000/Previews" + id ).then(this.PreviewsList.splice(id,1));
+      axios.delete("http://localhost:3000/Previews" + id)
+        .then(this.PreviewsList.splice(id, 1));
+    },
+    edit(){
+      axios.put("http://localhost:3000/Previews", {
+        title: this.title,
+        context: this.context,
+      });
     }
-  }
+  },
 };
 </script>
 
