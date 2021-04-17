@@ -1,9 +1,12 @@
 <template>
 
     <div>
-      <h3>Post</h3>
-      <input type="text" placeholder="topic" v-model="title" />
-      <button @click="submit">submit</button>
+      <h3 class="">Post</h3>
+      <div class="p-2">
+      <input class="shadow-2xl shadow-inner" type="text" placeholder="title" v-model="title" />
+      <input class="shadow-2xl shadow-inner" type="text" placeholder="context" v-model="context" />
+      </div>
+      <button class="p-2 focus:ring-5 ring-1 ring-red-500 "  @click="submit">submit</button>
     </div>
 
 </template>
@@ -15,13 +18,15 @@ export default {
     data() {
     return {
       title: "",
+      context:"",
     };
     
   },
   methods: {
     submit() {
           axios.post("http://localhost:3000/Previews", {
-              title: this.title
+              title: this.title,
+              context: this.context,
             })
             
         } 
@@ -33,13 +38,3 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
